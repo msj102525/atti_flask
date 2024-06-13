@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from gptAssistant import ask_question
 from io import BytesIO
-import tempfile
 from whisperSTT import transcribe_audio, load_audio
 from flask_cors import CORS
+from tts import play_tts
 
 app = Flask(__name__)
 CORS(app)
@@ -32,9 +32,7 @@ def transcribe():
 @app.route('/philosophy/<model>/<question>')
 def ask_philosophy(model, question):
     response = ask_question(question, model)
-
     play_tts(response)
-
     return jsonify(response)
 
 
