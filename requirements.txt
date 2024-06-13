@@ -1,3 +1,9 @@
 numpy
 
 Flask==3.0.3
+openai
+openai-whisper
+python-dotenv
+
+
+# RUN apt-get update && apt-get install -y ffmpeg 도커파일에 무조건 실행할 것
