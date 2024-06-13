@@ -1,30 +1,26 @@
 import whisper
-import os
-
-
-def transcribe_audio(audio_path, model_size="base"):
+import subprocess
+import numpy as np
+def load_audio(file, sr=16000):
     """
-    음성 파일을 텍스트로 변환하는 함수.
-
-    Parameters:
-    - audio_path (str): 변환할 음성 파일의 경로.
-    - model_size (str): 사용할 Whisper 모델의 크기. 기본값은 "base".
-
-    Returns:
-    - str: 변환된 텍스트.
+    BytesIO에서 오디오 파일을 로드하고 numpy 배열로 변환합니다.
     """
-    # 모델 로드 (CPU에서 실행)
+    process = subprocess.Popen(
+        ['ffmpeg', '-i', 'pipe:0', '-f', 'wav', '-acodec', 'pcm_s16le', '-ar', str(sr), '-ac', '1', 'pipe:1'],
+        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    out, err = process.communicate(input=file.read())
+    if process.returncode != 0:
+        raise RuntimeError(f"ffmpeg 오류: {err.decode()}")
+
+    # Load audio into numpy array
+    audio = np.frombuffer(out, np.int16).astype(np.float32) / 32768.0  # Normalize to [-1, 1]
+    return audio
+
+def transcribe_audio(audio, model_size="base"):
     model = whisper.load_model(model_size, device="cpu")
 
-    # 음성 파일을 텍스트로 변환
-    result = model.transcribe(audio_path)
+    # Whisper expects a numpy array as input
+    result = model.transcribe(audio)
 
-    # 변환된 텍스트 반환
     return result['text']
-
-
-# 예제 사용
-
-example_audio_path = "./audio/sample1.wav"
-transcribed_text = transcribe_audio(example_audio_path)
-print(transcribed_text)

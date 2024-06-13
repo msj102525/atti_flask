@@ -3,12 +3,10 @@ import time
 import re
 import os
 from dotenv import load_dotenv
-
 # 발급받은 API 키 설정
 load_dotenv()
+
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-
-
 def ask_question(question, model):
     # 새로운 스레드 생성
     thread = client.beta.threads.create()
