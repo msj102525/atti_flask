@@ -23,16 +23,12 @@ def play_tts(text):
 
     response = urllib.request.urlopen(request, data=data.encode('utf-8'))
     rescode = response.getcode()
-    if rescode == 200:
-        print("TTS mp3 재생")
+
+    if (rescode == 200):
+        print("TTS mp3 변환 성공")
         response_body = response.read()
-
-        # MP3 데이터를 AudioSegment로 변환
-        audio = AudioSegment.from_file(BytesIO(response_body), format="mp3")
-
-        # 오디오 재생
-        play(audio)
+        return response_body
     else:
         print("Error Code:" + str(rescode))
-
+        return None
 
