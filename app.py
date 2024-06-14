@@ -15,9 +15,6 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
-    """
-    바이너리 음성 데이터를 받아 텍스트로 변환하는 엔드포인트.
-    """
     if not request.data:
         return jsonify({"error": "No data provided"}), 400
     try:
@@ -34,7 +31,13 @@ def transcribe():
 @app.route('/philosophy/<model>/<question>')
 def ask_philosophy(model, question):
     response = ask_question(question, model)
-    play_tts(response)
+    # audio_base64=play_tts(response)
+    # response_json = {
+    #     'text': response,
+    #     'audio': audio_base64
+    # }
+    # return jsonify(response_json)
+    #play_tts(response)
     return jsonify(response)
 
 @app.route('/sentiment/<content>')
