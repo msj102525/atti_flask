@@ -43,6 +43,7 @@ def sentiment(content):
     print(result)
     return jsonify(result)
 
+@app.route('/tts', methods=['POST'])
 def tts():
     data = request.json
     text = data.get('text')
