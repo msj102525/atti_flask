@@ -3,19 +3,32 @@ import time
 import re
 import os
 from dotenv import load_dotenv
+
 # 발급받은 API 키 설정
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
+
 def ask_question(question, model):
     # 새로운 스레드 생성
     thread = client.beta.threads.create()
-    if model == 'schopenhauer':
-        assistantId='asst_ZQKG1uvM81IcDZXjocWeayWU';
-    else:
-        assistantId=model;
+    # assistantModel = {"schopenhauer": "asst_ZQKG1uvM81IcDZXjocWeayWU",
+    #                   "descartes": "asst_w5bzDa5z6WkvhXmUNM7tcVr1",
+    #                   "socrates": "asst_PGnZCOkyXYt4I75LKG1lZXVz",
+    #                   "aristotle": "asst_66gquf4MpkCmvNDphwmVIZ4z",
+    #                   "confucius": "asst_7HdBohy9jnXtoxF1w8CWj3g5",
+    #                   "plato": "asst_zhOklyn0xmH6LhcdyAyjID5X"}
+    # assistantId = assistantModel[model]
+    
+    
+    
+    #배포 전까지 테스트 모델 사용
+    assistantId="asst_66gquf4MpkCmvNDphwmVIZ4z"
+
+
     # 사용자 메시지 전송
+
     message = client.beta.threads.messages.create(
         thread_id=thread.id,
         role="user",

@@ -16,6 +16,6 @@ def load_audio(file, sr=16000):
 def transcribe_audio(audio, model_size="base"):
     model = whisper.load_model(model_size, device="cpu")
     # Whisper expects a numpy array as input
-    result = model.transcribe(audio)
+    result = model.transcribe(audio, language="ko")
     print(result)
     return result['text']

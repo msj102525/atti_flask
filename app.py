@@ -15,15 +15,19 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
-    if not request.data:
-        return jsonify({"error": "No data provided"}), 400
+    print("데이터 전송받음 !!!!!!!!!!!!!!!!!!!!")
+    if 'file' not in request.files:
+        return jsonify({"transcription": "No file provided"}), 400
     try:
         # BytesIO 객체를 np.ndarray로 변환
-        file_stream = BytesIO(request.data)
+        file = request.files['file']
+        print("file 잘와씀")
+        file_stream = BytesIO(file.read())
         file_stream.seek(0)
         audio = load_audio(file_stream)
         # 텍스트로 변환
         transcribed_text = transcribe_audio(audio)
+        print(transcribed_text)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     return jsonify({"transcription": transcribed_text})
