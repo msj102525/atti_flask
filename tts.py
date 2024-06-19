@@ -5,6 +5,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 from io import BytesIO
 from dotenv import load_dotenv
+import base64
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
@@ -26,11 +27,13 @@ def play_tts(text):
     response = urllib.request.urlopen(request, data=data.encode('utf-8'))
     rescode = response.getcode()
 
-    if (rescode == 200):
+    if rescode == 200:
         print("TTS mp3 변환 성공")
         response_body = response.read()
         print("TTS Response Body Length:", len(response_body))
-        return response_body
+        # Base64 인코딩
+        response_base64 = base64.b64encode(response_body).decode('utf-8')
+        return response_base64
     else:
         print("Error Code:" + str(rescode))
         return None
