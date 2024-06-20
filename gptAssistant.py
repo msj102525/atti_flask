@@ -14,7 +14,7 @@ def ask_question(question, model):
     # 새로운 스레드 생성
     thread = client.beta.threads.create()
     # assistantModel = {"schopenhauer": "asst_ZQKG1uvM81IcDZXjocWeayWU",
-    #                   "descartes": "asst_w5bzDa5z6WkvhXmUNM7tcVr1",
+    #                "descartes": "asst_w5bzDa5z6WkvhXmUNM7tcVr1",
     #                   "socrates": "asst_PGnZCOkyXYt4I75LKG1lZXVz",
     #                   "aristotle": "asst_66gquf4MpkCmvNDphwmVIZ4z",
     #                   "confucius": "asst_7HdBohy9jnXtoxF1w8CWj3g5",
