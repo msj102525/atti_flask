@@ -5,7 +5,6 @@ openai-whisper
 python-dotenv
 flask-cors
 pydub
-simpleaudio
 
 
 

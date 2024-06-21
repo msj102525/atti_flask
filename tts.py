@@ -12,10 +12,8 @@ load_dotenv()
 
 
 def play_tts(text):
-    client_id = os.getenv('NAVER_CLIENT_ID')
-    client_secret = os.getenv('NAVER_CLIENT_SECRET')
-
-    print(text + '장세민')
+    client_id = os.getenv('NAVER_CLIENT_ID').strip()
+    client_secret = os.getenv('NAVER_CLIENT_SECRET').strip()
 
     encText = urllib.parse.quote(text)
     data = f"speaker=nminsang&volume=0&speed=0&pitch=0&format=mp3&text={encText}"
