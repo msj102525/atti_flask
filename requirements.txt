@@ -8,4 +8,4 @@ pydub
 simpleaudio
 
 
-# RUN apt-get update && apt-get install -y ffmpeg 도커파일에 무조건 실행할 것
+

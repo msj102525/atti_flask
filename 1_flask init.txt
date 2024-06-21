@@ -5,3 +5,6 @@
 
 
 # 터미널에서 flask run 으로 실행
+
+
+# RUN apt-get update && apt-get install -y ffmpeg 도커파일에 무조건 실행할 것
