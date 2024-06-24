@@ -5,6 +5,8 @@ openai-whisper
 python-dotenv
 flask-cors
 pydub
-
-
+beautifulsoup4
+requests
+KoNLPy
+scikit-learn
 
