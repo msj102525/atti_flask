@@ -24,6 +24,7 @@ def analyze_sentiment(content):
     print(json.dumps(data, indent=4, sort_keys=True))
     response = requests.post(url, data=json.dumps(data), headers=headers)
     rescode = response.status_code
+    print('감정 분석 후 response : ', response)
     if rescode == 200:
         return response.json()
     else:

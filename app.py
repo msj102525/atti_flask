@@ -53,10 +53,11 @@ def ask_philosophy(model, question):
     return jsonify(response_json)
 
 
-@app.route('/sentiment/<content>')
-def sentiment(content):
+@app.route('/sentiment', methods=['POST'])
+def sentiment():
+    content = request.get_json().get('content')
     result = analyze_sentiment(content)
-    print(result)
+    print('sentiment : ', result)
     return jsonify(result)
 
 
