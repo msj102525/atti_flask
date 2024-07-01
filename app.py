@@ -45,7 +45,7 @@ def transcribe():
 @app.route('/philosophy/<model>/<question>')
 def ask_philosophy(model, question):
     response = ask_question(question, model)
-    audio_base64 = play_tts(response)
+    audio_base64 = play_tts(response, model)
     response_json = {
         'text': response,
         'audio': audio_base64

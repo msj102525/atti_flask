@@ -11,12 +11,20 @@ import base64
 load_dotenv()
 
 
-def play_tts(text):
+def play_tts(text, model):
     client_id = os.getenv('NAVER_CLIENT_ID').strip()
     client_secret = os.getenv('NAVER_CLIENT_SECRET').strip()
 
+    # 모델별로 다른 목소리 설정
+    if model == "socrates":
+        speaker = "nyoungil"
+    elif model == "descartes":
+        speaker = "nminsang"
+    else:
+        speaker = "nminsang"  # 기본 값 설정
+
     encText = urllib.parse.quote(text)
-    data = f"speaker=nminsang&volume=0&speed=0&pitch=0&format=mp3&text={encText}"
+    data = f"speaker={speaker}&volume=0&speed=0&pitch=0&format=mp3&text={encText}"
     url = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
     request = urllib.request.Request(url)
     request.add_header("X-NCP-APIGW-API-KEY-ID", client_id)
