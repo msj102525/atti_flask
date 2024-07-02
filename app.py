@@ -130,7 +130,7 @@ def similar_feeds(feedNum):
             # 함수 호출
             d = dist_raw(post_vec, new_content_vec)
 
-            print(f'==Post {similar_feeds[i]['feedNum']} with dis={d:.2f} : {parseContents[i]}')
+            # print(f'==Post {similar_feeds[i]['feedNum']} with dis={d:.2f} : {parseContents[i]}')
 
             distances.append((i, d))
 
