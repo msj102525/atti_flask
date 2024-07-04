@@ -163,5 +163,5 @@ def dist_raw(v1, v2):
     return sp.linalg.norm(delta.toarray())
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
