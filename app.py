@@ -79,7 +79,7 @@ def tts():
 ######################################## 유사도
 @app.route('/feed/similar/<int:feedNum>', methods=['GET'])
 def similar_feeds(feedNum):
-    spring_boot_url = f'http://localhost:8080/feed/similar/{feedNum}'
+    spring_boot_url = f'http://43.202.66.137:8080/feed/similar/{feedNum}'
     response = requests.get(spring_boot_url)
     print(f"Response status code: {response.status_code}")
 
