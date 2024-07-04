@@ -81,7 +81,7 @@ def tts():
 def similar_feeds(feedNum):
     auth_token = request.headers.get('Authorization')
 
-    spring_boot_url = f'http://localhost:8080/feed/similar/{feedNum}'
+    spring_boot_url = f'http://43.202.66.137:8080/feed/similar/{feedNum}'
 
     headers = {'Authorization': auth_token}
     response = requests.get(spring_boot_url, headers=headers)
