@@ -125,6 +125,9 @@ def similar_feeds(feedNum):
             if i == 0:
                 continue
 
+
+
+
             post_vec = X.getrow(i)
 
             # 함수 호출
