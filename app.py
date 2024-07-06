@@ -79,9 +79,13 @@ def tts():
 ######################################## 유사도
 @app.route('/feed/similar/<int:feedNum>', methods=['GET'])
 def similar_feeds(feedNum):
-    spring_boot_url = f'http://localhost:8080/feed/similar/{feedNum}'
-    response = requests.get(spring_boot_url)
-    print(f"Response status code: {response.status_code}")
+    auth_token = request.headers.get('Authorization')
+
+    spring_boot_url = f'http://43.202.66.137:8080/feed/similar/{feedNum}'
+
+    headers = {'Authorization': auth_token}
+    response = requests.get(spring_boot_url, headers=headers)
+    # print(f"Response status code: {response.status_code}")
 
     okt = Okt()
     vectorizer = TfidfVectorizer(min_df=1, decode_error='ignore')
@@ -166,5 +170,5 @@ def dist_raw(v1, v2):
     return sp.linalg.norm(delta.toarray())
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()

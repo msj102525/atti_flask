@@ -9,4 +9,4 @@ beautifulsoup4
 requests
 KoNLPy
 scikit-learn
-
+gunicorn
